@@ -1,3 +1,4 @@
+import Feed from "@components/feed";
 import React from "react";
 
 export default function Home() {
@@ -12,6 +13,8 @@ export default function Home() {
         Promptly is an open-source AI prompting tool for modern world to
         discover, create and share creative prompts
       </p>
+
+      <Feed />
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import "@styles/globals.css";
+import CustomNavBar from "@components/Nav";
 
 export const metadata = {
   title: "Promptly",
@@ -12,7 +13,10 @@ const RootLayout = ({ children }) => {
         <div className="main">
           <div className="gradient"></div>
         </div>
-        <main className="app">{children}</main>
+        <main className="app">
+          <CustomNavBar />
+          {children}
+        </main>
       </body>
     </html>
   );
