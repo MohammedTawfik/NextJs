@@ -4,7 +4,6 @@ import { ConnectToDatabase } from "@utils/database";
 export async function POST(req, res) {
   if (req.method === "POST") {
     try {
-      debugger;
       // Connect to MongoDB
       await ConnectToDatabase();
 

@@ -14,7 +14,6 @@ const CreatePrompt = () => {
   });
 
   const createPrompt = async (e) => {
-    debugger;
     e.preventDefault();
     setSubmitting(true);
     // Create the prompt
