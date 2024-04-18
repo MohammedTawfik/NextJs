@@ -8,6 +8,8 @@ import copyIcon from "@public/icons/copy.svg";
 import { set } from "mongoose";
 
 const PromptCard = ({ post, tagClickHandler, editHandler, deleteHandler }) => {
+  const { data: session } = useSession();
+  const pathName = usePathname();
   const [copied, setCopied] = useState("");
   const copyHandler = () => {
     navigator.clipboard.writeText(post.Prompt);
@@ -53,6 +55,22 @@ const PromptCard = ({ post, tagClickHandler, editHandler, deleteHandler }) => {
       >
         {post.Tag}
       </p>
+      {session?.user?.id === post.Creator?._id && pathName === "/profile" && (
+        <div className="flex justify-end items-center gap-5">
+          <p
+            className="font-inter text-sm green_gradient cursor-pointer"
+            onClick={editHandler}
+          >
+            Edit
+          </p>
+          <p
+            className="font-inter text-sm orange_gradient cursor-pointer"
+            onClick={deleteHandler}
+          >
+            Delete
+          </p>
+        </div>
+      )}
     </div>
   );
 };
