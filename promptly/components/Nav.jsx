@@ -4,10 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@public/images/logo.svg";
 import { useState, useEffect } from "react";
-import { signIn, signOut, useSessions, getProviders } from "next-auth/react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const CustomNavBar = () => {
-  const isUsrLoggedIn = true;
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -32,7 +32,7 @@ const CustomNavBar = () => {
       </Link>
       {/*Desktop Navigation*/}
       <div className="sm:flex hidden">
-        {isUsrLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
@@ -44,7 +44,7 @@ const CustomNavBar = () => {
             <Link href="/profile">
               <div className="flex gap-2">
                 <Image
-                  src={logo}
+                  src={session?.user?.image}
                   alt="User Avatar"
                   width={37}
                   height={37}
@@ -74,10 +74,10 @@ const CustomNavBar = () => {
 
       {/*Mobile Navigation*/}
       <div className="sm:hidden flex relative">
-        {isUsrLoggedIn ? (
+        {session?.user ? (
           <div>
             <Image
-              src={logo}
+              src={session?.user?.image}
               alt="User Avatar"
               width={37}
               height={37}
